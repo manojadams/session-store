@@ -1,0 +1,35 @@
+{
+  "name": "@manojadams/session-store",
+  "version": "1.0.0",
+  "description": "Simple state management with session storage",
+  "main": "./dist/index.js",
+  "module": "./dist/index.modern.js",
+  "upkg": "./dist/index.umd.js",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.js"
+  },
+  "scripts": {
+    "build": "microbundle",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manojgetwealthy/session-store.git"
+  },
+  "keywords": [
+    "state-management",
+    "react",
+    "session-storage"
+  ],
+  "author": "manojgetwealthy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manojgetwealthy/session-store/issues"
+  },
+  "homepage": "https://github.com/manojgetwealthy/session-store#readme",
+  "devDependencies": {
+    "microbundle": "^0.15.1"
+  }
+}
