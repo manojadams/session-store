@@ -4,8 +4,8 @@ import { IStore } from "./constants";
  * @author - manojgetwealthy
  * Simple state management with session storage
  */
-abstract class SessionStore<T extends IStore> {
-    protected __sessionData: T;
+abstract class SessionStore<T> {
+    protected __sessionData: T & IStore;
     protected _name: string;
     protected _createdAt: Date;
     protected _updatedAt: Date;
@@ -13,17 +13,17 @@ abstract class SessionStore<T extends IStore> {
 
     constructor(_name?: string) {
         this._name = _name || this.constructor.name;
-        this.__sessionData = <T>{};
+        this.__sessionData = <T & IStore>{};
         this._createdAt = new Date();
         this._updatedAt = new Date();
         this.isReady = false;
     }
 
-    init() {
-        const storeName = this.constructor.name;
-        const sessionData = sessionStorage.getItem(storeName);
+    init(deps?) {
+        const sessionData = sessionStorage.getItem(this._name);
         if (sessionData) {
             this.__sessionData = JSON.parse(sessionData);
+            this.isReady = true;
         }
     }
 
@@ -36,11 +36,15 @@ abstract class SessionStore<T extends IStore> {
         this._updatedAt = new Date();
     }
 
-    destroy() {
-        const createdAt = this.getData("_createdAt") || this._createdAt.toISOString();
+    protected _cleanup() {
+        const createdAt = this.__sessionData._createdAt || this._createdAt.toISOString();
         const updatedAt = this._updatedAt.toISOString();
-        this.setData("_createdAt", createdAt);
-        this.setData("_updatedAt", updatedAt);
+        this.__sessionData._createdAt = createdAt;
+        this.__sessionData._updatedAt = updatedAt;
+    }
+
+    destroy() {
+        this._cleanup();
         sessionStorage.setItem(this._name, JSON.stringify(this.__sessionData));
     }
 }
