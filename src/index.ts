@@ -1,9 +1,11 @@
 import LocalStore from "./LocalStore";
 import SessionStore from "./SessionStore";
+import BaseSessionStore from "./BaseSessionStore";
 
 export {
     SessionStore,
-    LocalStore
+    LocalStore,
+    BaseSessionStore
 }
 
-export default SessionStore;
+export default BaseSessionStore;
