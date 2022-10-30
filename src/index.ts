@@ -1,11 +1,9 @@
-import LocalStore from "./LocalStore";
-import SessionStore from "./SessionStore";
-import BaseSessionStore from "./BaseSessionStore";
+import LocalStore from "./store/LocalStore";
+import SessionStore from "./store/SessionStore";
 
 export {
     SessionStore,
-    LocalStore,
-    BaseSessionStore
+    LocalStore
 }
 
-export default BaseSessionStore;
+export default SessionStore;

@@ -1,12 +1,15 @@
-import SessionStore from "./SessionStore";
+import BaseSessionStore from "./base/BaseSessionStore";
 
-class BaseSessionStore<T> extends SessionStore<T> {
+class SessionStore<T> extends BaseSessionStore<T> {
     isStoreReady: boolean;
-    private _deps: Array<BaseSessionStore<any>>;
-    constructor(name: string, ...deps: Array<BaseSessionStore<any>>) {
-        super(name);
+    private _deps: Array<SessionStore<any>>;
+    constructor(name: string, ...deps: Array<SessionStore<any>>) {
+        super(name, sessionStorage);
         this.isStoreReady = false;
         this._deps = deps;
+    }
+    protected setStoreType(storeType: Storage) {
+        this._storeType = storeType;
     }
     async init() {
         super.init();
@@ -29,4 +32,4 @@ class BaseSessionStore<T> extends SessionStore<T> {
     }
 }
 
-export default BaseSessionStore;
+export default SessionStore;
