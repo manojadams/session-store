@@ -98,7 +98,7 @@ class UserStore extends SessionStore<IUser> {
 * 1) name of your store
 * 2) handle store dependencies
 * 3) isReady - flag to indicate your store has been initialized from data persistence layer (e.g.-> data is loaded from session storage / local storage)
-* 4) isStoreReady - flag to indicate 
+* 4) isStoreReady - flag to indicate that the store has been initialized (from init block) and it is ready for serving data to its consumers (other stores/componenets etc.)
 ```javascript
 class UserStore extends SessionStore {
   /**
