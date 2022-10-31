@@ -4,7 +4,7 @@ class SessionStore<T> extends BaseSessionStore<T> {
     isStoreReady: boolean;
     private _deps: Array<SessionStore<any>>;
     constructor(name: string, ...deps: Array<SessionStore<any>>) {
-        super(name, sessionStorage);
+        super(name);
         this.isStoreReady = false;
         this._deps = deps;
     }
@@ -28,6 +28,7 @@ class SessionStore<T> extends BaseSessionStore<T> {
                 this._deps[i].destroy();
             }
         }
+        this.isReady = false;
         this.isStoreReady = false;
     }
 }

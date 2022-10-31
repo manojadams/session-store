@@ -5,7 +5,7 @@ import { IStore } from "./../../constants";
  * Simple state management with session storage
  */
 abstract class BaseSessionStore<T> {
-    protected _storeType: Storage;
+    protected _storeType: Storage | undefined;
     protected _sessionData: T & IStore;
     protected _name: string;
     protected _createdAt: Date;
@@ -14,7 +14,7 @@ abstract class BaseSessionStore<T> {
 
     constructor(_name?: string, _storeType?: Storage) {
         this._name = _name || this.constructor.name;
-        this._storeType = _storeType || sessionStorage;
+        this._storeType = _storeType;
         this._sessionData = <T & IStore>{};
         this._createdAt = new Date();
         this._updatedAt = new Date();
@@ -22,7 +22,8 @@ abstract class BaseSessionStore<T> {
     }
 
     init(deps?) {
-        const sessionData = this._storeType.getItem(this._name);
+        const storeType = this._storeType || sessionStorage;
+        const sessionData = storeType.getItem(this._name);
         if (sessionData) {
             this._sessionData = JSON.parse(sessionData);
             this.isReady = true;
@@ -47,7 +48,8 @@ abstract class BaseSessionStore<T> {
 
     destroy() {
         this._cleanup();
-        this._storeType.setItem(this._name, JSON.stringify(this._sessionData));
+        const storeType = this._storeType || sessionStorage;
+        storeType.setItem(this._name, JSON.stringify(this._sessionData));
     }
 }
 
