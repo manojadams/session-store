@@ -51,6 +51,11 @@ abstract class BaseSessionStore<T> {
         const storeType = this._storeType || sessionStorage;
         storeType.setItem(this._name, JSON.stringify(this._sessionData));
     }
+
+    remove() {
+        const storeType = this._storeType || sessionStorage;
+        storeType.removeItem(this._name);
+    }
 }
 
 export default BaseSessionStore;

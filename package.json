@@ -1,7 +1,7 @@
 {
   "name": "@manojadams/session-store",
-  "version": "1.0.10",
-  "description": "Simple state management with session storage",
+  "version": "1.0.13",
+  "description": "State management with session-storage/local-storage",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.modern.js",
@@ -25,7 +25,10 @@
   "keywords": [
     "state-management",
     "react",
-    "session-storage"
+    "next",
+    "session-storage",
+    "local-storage",
+    "data-persistence"
   ],
   "author": "manojgetwealthy",
   "license": "ISC",
