@@ -54,6 +54,10 @@ abstract class BaseSessionStore<T> {
 
     remove() {
         const storeType = this._storeType || sessionStorage;
+        const allSessionKeys = Object.keys(this._sessionData);
+        allSessionKeys.forEach(k => {
+            this._sessionData[k] = undefined;
+        });
         storeType.removeItem(this._name);
     }
 }
