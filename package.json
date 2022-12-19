@@ -1,6 +1,6 @@
 {
   "name": "@manojadams/session-store",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "description": "State management with session-storage/local-storage",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

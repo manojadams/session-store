@@ -16,7 +16,9 @@ class SessionStore<T> extends BaseSessionStore<T> {
         if (this.isStoreReady) return;
         if (this._deps) {
             for (let i =0; i < this._deps.length; i++) {
-                await this._deps[i].init();
+                if (!this._deps[i].isStoreReady) {
+                    await this._deps[i].init();
+                }
             }
         }
     }
